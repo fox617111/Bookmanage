@@ -1,4 +1,4 @@
-package org.example.book_manage.pojo;
+package org.example.backend.pojo;
 
 
 import lombok.AllArgsConstructor;

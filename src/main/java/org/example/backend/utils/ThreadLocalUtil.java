@@ -1,4 +1,4 @@
-package org.example.book_manage.utils;
+package org.example.backend.utils;
 
 /**
  * ThreadLocal 工具类

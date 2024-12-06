@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.backend.mapper.BorrowingRecordMapper">
+
+    <!-- 插入借阅记录 -->
+    <insert id="addBorrow" parameterType="org.example.backend.pojo.vo.BorrowingRecordVO">
+        INSERT INTO borrowing_records (
+            user_id, book_id, borrow_date, due_date, return_date
+        )
+        VALUES (
+            #{user_id}, #{book_id}, #{borrow_date}, #{due_date}, #{return_date}
+        )
+    </insert>
+
+    <!-- 删除借阅记录 -->
+    <delete id="deleteBorrowingRecord" parameterType="Integer">
+        DELETE FROM borrowing_records
+        WHERE record_id = #{record_id}
+    </delete>
+
+    <!-- 根据ID查询借阅记录 -->
+    <select id="getBorrowingRecordById" parameterType="Integer" resultType="org.example.backend.pojo.vo.BorrowingRecordVO">
+        SELECT * FROM borrowing_records
+        WHERE record_id = #{record_id}
+    </select>
+
+    <!-- 更新借阅记录 -->
+    <update id="updateBorrowingRecord" parameterType="org.example.backend.pojo.vo.BorrowingRecordVO">
+        UPDATE borrowing_records
+        <set>
+            <if test="user_id != null">user_id = #{user_id},</if>
+            <if test="book_id != null">book_id = #{book_id},</if>
+            <if test="borrow_date != null">borrow_date = #{borrow_date},</if>
+            <if test="due_date != null">due_date = #{due_date},</if>
+            <if test="return_date != null">return_date = #{return_date}</if>
+        </set>
+        WHERE record_id = #{record_id}
+    </update>
+
+    <!-- 根据条件查询借阅记录 -->
+    <select id="searchBorrowingRecord" parameterType="org.example.backend.pojo.vo.BorrowingRecordVO" resultType="org.example.backend.pojo.vo.BorrowingRecordVO">
+        SELECT * FROM borrowing_records 
+        <where>1=1
+            <if test="record_id != null">
+                AND record_id = #{record_id}
+            </if>
+            <if test="user_id != null">
+                AND user_id = #{user_id}
+            </if>
+            <if test="book_id != null">
+                AND book_id = #{book_id}
+            </if>
+            <if test="borrow_date != null">
+                AND borrow_date = #{borrow_date}
+            </if>
+            <if test="due_date != null">
+                AND due_date = #{due_date}
+            </if>
+            <if test="return_date != null">
+                AND return_date = #{return_date}
+            </if>
+        </where>
+    </select>
+
+</mapper>

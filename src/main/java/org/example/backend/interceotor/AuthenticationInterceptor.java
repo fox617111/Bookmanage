@@ -1,4 +1,4 @@
-package org.example.book_manage.interceotor;
+package org.example.backend.interceotor;
 
 import com.auth0.jwt.exceptions.AlgorithmMismatchException;
 import com.auth0.jwt.exceptions.InvalidClaimException;
@@ -7,8 +7,10 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.book_manage.utils.JwtUtil;
-import org.example.book_manage.utils.ThreadLocalUtil;
+
+
+import org.example.backend.utils.JwtUtil;
+import org.example.backend.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -19,7 +21,7 @@ import java.util.Map;
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-            Object object) throws Exception {
+                             Object object) throws Exception {
 
         // 实际这个名字可以指定为别的，token太没有辨识度---
         // 这个header是在创建完token返回给前端时指定的头部的key，value就是token内容

@@ -48,10 +48,202 @@
                 is_active = #{is_active},
             </if>
             <if test="sex != null">
-                sex = #{sex}
+                sex = #{sex},
             </if>
         </set>
-        WHERE id = #{id}
+        WHERE user_id = #{user_id}
     </update>
+
+    <select id="selectList" parameterType="map" resultType="org.example.backend.pojo.vo.UserVO">
+        SELECT * FROM users
+        <where>1=1
+            <if test="user_id != null">
+                AND user_id = #{user_id}
+            </if>
+            <if test="username != null">
+                AND username = #{username}
+            </if>
+            <if test="nickname != null">
+                AND nickname = #{nickname}
+            </if>
+            <if test="role != null">
+                AND role = #{role}
+            </if>
+            <if test="register_time != null">
+                AND register_time = #{register_time}
+            </if>
+            <if test="login_time != null">
+                AND login_time = #{login_time}
+            </if>
+            <if test="password != null">
+                AND password = #{password}
+            </if>
+            <if test="personality != null">
+                AND personality = #{personality}
+            </if>
+            <if test="personal_description != null">
+                AND personal_description = #{personal_description}
+            </if>
+            <if test="birthday != null">
+                AND birthday = #{birthday}
+            </if>
+            <if test="phone_number != null">
+                AND phone_number = #{phone_number}
+            </if>
+            <if test="email != null">
+                AND email = #{email}
+            </if>
+            <if test="avatar_url != null">
+                AND avatar_url = #{avatar_url}
+            </if>
+            <if test="is_active != null">
+                AND is_active = #{is_active}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex}
+            </if>
+        </where>
+    </select>
+
+    <select id="select"  resultType="org.example.backend.pojo.vo.UserVO">
+        SELECT * FROM users
+        <where>1=1
+            <if test="user_id != null">
+                And user_id=#{user_id}
+            </if>
+            <if test="username != null and username != ''">
+                AND username = #{username}
+            </if>
+            <if test="nickname != null and nickname != ''">
+                AND nickname = #{nickname}
+            </if>
+            <if test="role != null and role != ''">
+                AND role = #{role}
+            </if>
+            <if test="register_time != null">
+                AND register_time = #{register_time}
+            </if>
+            <if test="login_time != null">
+                AND login_time = #{login_time}
+            </if>
+            <if test="password != null and password != ''">
+                AND password = #{password}
+            </if>
+            <if test="personality != null and personality != ''">
+                AND personality = #{personality}
+            </if>
+            <if test="personal_description != null and personal_description != ''">
+                AND personal_description = #{personal_description}
+            </if>
+            <if test="birthday != null">
+                AND birthday = #{birthday}
+            </if>
+            <if test="phone_number != null and phone_number != ''">
+                AND phone_number = #{phone_number}
+            </if>
+            <if test="email != null and email != ''">
+                AND email = #{email}
+            </if>
+            <if test="avatar_url != null and avatar_url != ''">
+                AND avatar_url = #{avatar_url}
+            </if>
+            <if test="is_active != null">
+                AND is_active = #{is_active}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="org.example.backend.pojo.vo.UserVO">
+        DELETE FROM users
+        <where>
+            <if test="user_id != null">
+                AND user_id = #{user_id}
+            </if>
+            <if test="username != null">
+                AND username = #{username}
+            </if>
+            <if test="nickname != null">
+                AND nickname = #{nickname}
+            </if>
+            <if test="role != null">
+                AND role = #{role}
+            </if>
+            <if test="register_time != null">
+                AND register_time = #{register_time}
+            </if>
+            <if test="login_time != null">
+                AND login_time = #{login_time}
+            </if>
+            <if test="password != null">
+                AND password = #{password}
+            </if>
+            <if test="personality != null">
+                AND personality = #{personality}
+            </if>
+            <if test="personal_description != null">
+                AND personal_description = #{personal_description}
+            </if>
+            <if test="birthday != null">
+                AND birthday = #{birthday}
+            </if>
+            <if test="phone_number != null">
+                AND phone_number = #{phone_number}
+            </if>
+            <if test="email != null">
+                AND email = #{email}
+            </if>
+            <if test="avatar_url != null">
+                AND avatar_url = #{avatar_url}
+            </if>
+            <if test="is_active != null">
+                AND is_active = #{is_active}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="insert" parameterType="org.example.backend.pojo.vo.UserVO">
+        INSERT INTO users (
+        <trim prefixOverrides="," suffixOverrides=",">
+            <if test="username != null">username,</if>
+            <if test="nickname != null">nickname,</if>
+            <if test="role != null">role,</if>
+            <if test="register_time != null">register_time,</if>
+            <if test="login_time != null">login_time,</if>
+            <if test="password != null">password,</if>
+            <if test="personality != null">personality,</if>
+            <if test="personal_description != null">personal_description,</if>
+            <if test="birthday != null">birthday,</if>
+            <if test="phone_number != null">phone_number,</if>
+            <if test="email != null">email,</if>
+            <if test="avatar_url != null">avatar_url,</if>
+            <if test="is_active != null">is_active,</if>
+            <if test="sex != null">sex,</if>
+        </trim>
+        ) VALUES (
+        <trim prefixOverrides="," suffixOverrides=",">
+            <if test="username != null">#{username},</if>
+            <if test="nickname != null">#{nickname},</if>
+            <if test="role != null">#{role},</if>
+            <if test="register_time != null">#{register_time},</if>
+            <if test="login_time != null">#{login_time},</if>
+            <if test="password != null">#{password},</if>
+            <if test="personality != null">#{personality},</if>
+            <if test="personal_description != null">#{personal_description},</if>
+            <if test="birthday != null">#{birthday},</if>
+            <if test="phone_number != null">#{phone_number},</if>
+            <if test="email != null">#{email},</if>
+            <if test="avatar_url != null">#{avatar_url},</if>
+            <if test="is_active != null">#{is_active},</if>
+            <if test="sex != null">#{sex},</if>
+        </trim>
+        )
+    </insert>
+
 
 </mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.backend.mapper.BookMapper">
+
+    <!-- 插入书籍 -->
+    <insert id="addBook" parameterType="org.example.backend.pojo.vo.BookVO">
+        INSERT INTO books (
+            book_id, title, author, publisher, publication_date, isbn, category,
+            total_copies, available_copies, introduction
+        )
+        VALUES (
+            #{book_id}, #{title}, #{author}, #{publisher}, #{publication_date},
+            #{isbn}, #{category}, #{total_copies}, #{available_copies}, #{introduction}
+        )
+    </insert>
+
+    <!-- 更新书籍 -->
+    <update id="updateBook" parameterType="org.example.backend.pojo.vo.BookVO">
+        UPDATE books
+        <set>
+            <if test="title != null">title = #{title},</if>
+            <if test="author != null">author = #{author},</if>
+            <if test="publisher != null">publisher = #{publisher},</if>
+            <if test="publication_date != null">publication_date = #{publication_date},</if>
+            <if test="isbn != null">isbn = #{isbn},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="total_copies != null">total_copies = #{total_copies},</if>
+            <if test="available_copies != null">available_copies = #{available_copies},</if>
+            <if test="introduction != null">introduction = #{introduction}</if>
+        </set>
+        WHERE book_id = #{book_id}
+    </update>
+
+    <!-- 删除书籍 -->
+    <delete id="deleteBook" parameterType="Integer">
+        DELETE FROM books
+        WHERE book_id = #{book_id}
+    </delete>
+
+    <!-- 根据ID查询书籍 -->
+    <select id="selectBookById" parameterType="Integer" resultType="org.example.backend.pojo.vo.BookVO">
+        SELECT * FROM books
+        WHERE book_id = #{book_id}
+    </select>
+
+    <!-- 根据条件查询书籍 -->
+    <select id="searchBook" parameterType="map" resultType="org.example.backend.pojo.vo.BookVO">
+        SELECT * FROM books
+        <where>1=1
+            <if test="book_id != null">
+                AND book_id = #{book_id}
+            </if>
+            <if test="title != null">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+            <if test="author != null">
+                AND author LIKE CONCAT('%', #{author}, '%')
+            </if>
+            <if test="publisher != null">
+                AND publisher LIKE CONCAT('%', #{publisher}, '%')
+            </if>
+            <if test="category != null">
+                AND category = #{category}
+            </if>
+            <if test="isbn != null">
+                AND isbn = #{isbn}
+            </if>
+            <if test="total_copies != null">
+                AND total_copies = #{total_copies}
+            </if>
+            <if test="available_copies != null">
+                AND available_copies = #{available_copies}
+            </if>
+            <if test="introduction != null">
+                AND introduction LIKE CONCAT('%', #{introduction}, '%')
+            </if>
+            <if test="publication_date != null">
+                AND publication_date = #{publication_date}
+            </if>
+        </where>
+    </select>
+
+</mapper>

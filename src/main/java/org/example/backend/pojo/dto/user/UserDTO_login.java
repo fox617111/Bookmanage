@@ -1,4 +1,4 @@
-package org.example.backend.pojo.dto;
+package org.example.backend.pojo.dto.user;
 
 import lombok.Data;
 

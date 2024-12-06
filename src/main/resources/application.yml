@@ -1,1 +1,19 @@
-spring.application.name=backend
+server:
+  additional-tomcat-flags: --add-opens=java.base/java.lang=ALL-UNNAMED
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: org.example.backend.pojo
+  configuration:
+    map-underscore-to-camel-case: false
+
+logging:
+  level:
+    org.mybatis: DEBUG  # 查看 MyBatis 的 SQL 语句
+    com.example.mapper: DEBUG  # 替换为你的 Mapper 包路径

@@ -1,4 +1,4 @@
-package org.example.book_manage.utils;
+package org.example.backend.utils;
 
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;

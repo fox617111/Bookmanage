@@ -1,4 +1,4 @@
-package org.example.book_manage.utils;
+package org.example.backend.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
